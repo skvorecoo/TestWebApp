@@ -4,24 +4,11 @@ const path = require("path");
 const querystring = require("querystring");
 const { error } = require("console");
 
-const routes = require('./routes')
+const routes = require('./modules/routes')
+const getMimeType = require('./modules/mimeTypes')
 
 const HOST = "localhost";
 const PORT = 3000;
-
-function getMimeType(fileName) {
-  const extname = path.extname(fileName).toLowerCase();
-  switch (extname) {
-    case ".html":
-      return "text/html";
-    case ".png":
-      return "image/png";
-    case ".ico":
-      return "image/ico";
-    default:
-      return "application/octet-stream";
-  }
-}
 
 const requestListener = function (req, res) {
   const url = req.url;
