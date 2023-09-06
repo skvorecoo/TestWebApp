@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+
+    <style>
+      .center-text {
+      text-align: center;
+    }
+    </style>
+
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>КРУТОЙ ФОРУМ ДЛЯ СУТЕНДОВ</title>
+  </head>
+  <body class="center-text">
+    <h1>КРУТОЙ ФОРУМ ДЛЯ СУТЕНДОВ НА КОТОРОМ ВСЕ ПИЩУТ КАПСОМ</h1>
+    <img src="/logo.png" alt="ЛОГО ФОРУМА" />
+    <div>
+      <a href="/">ГЛАВНАЯ</a>
+    </div>
+
+    <div>
+      <a href="/login.html" class="btn">ЛОГИН</a>
+      <span>РЕГИСТРАЦИЯ</span>
+    </div>
+    <div>
+      <form action="/register.html" method="POST">
+        <label for="username">ИМЯ ПОЛЬЗОВАТЕЛЯ:</label>
+        <input
+          type="username"
+          id="username"
+          name="username"
+          placeholder="ВВЕДИТЕ ВАШЕ ИМЯ"
+          required
+        /><br />
+
+        <label for="password">ПАРОЛЬ:</label>
+        <input
+          type="password"
+          id="password"
+          name="password"
+          placeholder="ВВЕДИТЕ ВАШ ПАРОЛЬ"
+          required
+        /><br />
+        <input type="submit" value="РЕГИСТРАЦИЯ" id="register" />
+    </div>
+  </body>
+</html>
