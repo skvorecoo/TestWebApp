@@ -4,16 +4,10 @@ const path = require("path");
 const querystring = require("querystring");
 const { error } = require("console");
 
+const routes = require('./routes')
+
 const HOST = "localhost";
 const PORT = 3000;
-
-const routes = {
-  "/": "templates/index.html", //Просто добавь сюда "запрос файла от пользователя : путь до файла на сервере", поидее должно работать. Возможно придётся добавить кое-что в getMimeType
-  "/login": "templates/login.html",
-  "/favicon.ico": "favicon.ico",
-  "/register": "templates/register.html",
-  "/logo.png": "images/logo.png",
-};
 
 function getMimeType(fileName) {
   const extname = path.extname(fileName).toLowerCase();
