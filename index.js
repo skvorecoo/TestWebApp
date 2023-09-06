@@ -3,122 +3,54 @@ const fs = require("fs");
 const path = require("path");
 const querystring = require("querystring");
 const { error } = require("console");
-const image = fs.readFileSync("images/logo.png");
 
-const ROOT = __dirname;
 const HOST = "localhost";
 const PORT = 3000;
 
-function fileInfo(extname, MimeType, path) {
-  this.extname = extname;
-  this.MimeType = MimeType;
-  this.path = path;
-}
+const routes = {
+  "/": "templates/index.html", //Просто добавь сюда "запрос файла от пользователя : путь до файла на сервере", поидее должно работать
+  "/login.html": "templates/login.html",
+  "/favicon.ico": "favicon.ico",
+  "/register.html": "templates/register.html",
+  "/logo.png": "images/logo.png",
+};
 
-function getFileInfo(fileName) {
+function getMimeType(fileName) {
   const extname = path.extname(fileName).toLowerCase();
   switch (extname) {
     case ".html":
-      return new fileInfo(
-        ".html",
-        "text/html",
-        path.join(ROOT, "templates", fileName)
-      );
+      return "text/html";
     case ".png":
-      return new fileInfo(
-        ".png",
-        "image/png",
-        path.join(ROOT, "images", fileName)
-      );
+      return "image/png";
     case ".ico":
-      return new fileInfo(".png", "image/ico", path.join(ROOT, fileName));
+      return "image/ico";
     default:
-      return new fileInfo(null, null, null);
+      return "application/octet-stream";
   }
 }
 
 const requestListener = function (req, res) {
-  let file;
+  const url = req.url;
+  const fileName = routes[url];
 
-  switch (req.url) {
-    case "/":
-      file = getFileInfo("index.html");
-      res.writeHead(200, { "Content-Type": `${file.MimeType}` });
-      fs.readFile(file.path, (err, data) => {
-        if (err) {
-          console.error(err);
-          res.end();
-        } else {
-          res.write(data);
-          res.end();
-        }
-      });
-      break;
-    case "/login.html":
-      file = getFileInfo(`${req.url}`);
-      res.writeHead(200, { "Content-Type": `${file.MimeType}` });
-      fs.readFile(file.path, (err, data) => {
-        if (err) {
-          console.error(err);
-          res.end();
-        } else {
-          res.write(data);
-          res.end();
-        }
-      });
-      break;
-    case "/favicon.ico":
-      file = getFileInfo(`${req.url}`);
-      res.writeHead(200, { "Content-Type": `${file.MimeType}` });
-      fs.readFile(file.path, (err, data) => {
-        if (err) {
-          console.error(err);
-          res.end();
-        } else {
-          res.write(data);
-          res.end();
-        }
-      });
-      break;
-    case "/register.html":
-      file = getFileInfo(`${req.url}`);
-      res.writeHead(200, { "Content-Type": `${file.MimeType}` });
-      fs.readFile(file.path, (err, data) => {
-        if (err) {
-          console.error(err);
-          res.end();
-        } else {
-          res.write(data);
-          res.end();
-        }
-      });
-      break;
-    case "/logo.png":
-      file = getFileInfo(`${req.url}`);
-      res.writeHead(200, { "Content-Type": `${file.MimeType}` });
-      fs.readFile(file.path, (err, data) => {
-        if (err) {
-          console.error(err);
-          res.end();
-        } else {
-          res.write(data);
-          res.end();
-        }
-      });
-      break;
-    default:
-      file = getFileInfo("error.html");
-      res.writeHead(200, { "Content-Type": `${file.MimeType}` });
-      fs.readFile(file.path, (err, data) => {
-        if (err) {
-          console.error(err);
-          res.end();
-        } else {
-          res.write(data);
-          res.end();
-        }
-      });
-      break;
+  if (fileName) {
+    const filePath = path.join(__dirname, fileName);
+    const mimeType = getMimeType(fileName);
+
+    fs.readFile(filePath, (err, data) => {
+      if (err) {
+        console.error(err);
+        res.writeHead(500, { "Content-Type": "text/plain" });
+        res.end("Internal Server Error");
+      } else {
+        res.writeHead(200, { "Content-Type": mimeType });
+        res.write(data);
+        res.end();
+      }
+    });
+  } else {
+    res.writeHead(404, { "Content-Type": "text/plain" });
+    res.end("Not Found");
   }
 };
 
