@@ -9,9 +9,9 @@ const PORT = 3000;
 
 const routes = {
   "/": "templates/index.html", //Просто добавь сюда "запрос файла от пользователя : путь до файла на сервере", поидее должно работать
-  "/login.html": "templates/login.html",
+  "/login": "templates/login.html",
   "/favicon.ico": "favicon.ico",
-  "/register.html": "templates/register.html",
+  "/register": "templates/register.html",
   "/logo.png": "images/logo.png",
 };
 

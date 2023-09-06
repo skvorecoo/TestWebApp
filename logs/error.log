@@ -1,0 +1,5 @@
+2023/09/06 04:59:36 [emerg] 3788#15824: CreateFile() "C:\Users\skvorecoo\Labs\TestWebApp/conf/nginx.conf" failed (3: The system cannot find the path specified)
+2023/09/06 04:59:52 [emerg] 24100#10744: CreateDirectory() "C:\Users\skvorecoo\Labs\TestWebApp/temp/client_body_temp" failed (3: The system cannot find the path specified)
+2023/09/06 05:00:13 [error] 1476#1764: *3 connect() failed (10061: No connection could be made because the target machine actively refused it) while connecting to upstream, client: 85.140.4.237, server: localhost, request: "GET /logo.png HTTP/1.1", upstream: "http://127.0.0.1:3000/logo.png", host: "skvorecoo.ddns.net", referrer: "http://skvorecoo.ddns.net/login.html"
+2023/09/06 05:00:28 [error] 1476#1764: *37 connect() failed (10061: No connection could be made because the target machine actively refused it) while connecting to upstream, client: 192.168.1.1, server: localhost, request: "GET /favicon.ico HTTP/1.1", upstream: "http://127.0.0.1:3000/favicon.ico", host: "skvorecoo.ddns.net", referrer: "http://skvorecoo.ddns.net/login.html"
+2023/09/06 05:02:00 [notice] 24296#13756: signal process started
