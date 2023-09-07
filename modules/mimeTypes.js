@@ -9,6 +9,8 @@ function getMimeType(fileName) {
       return "image/png";
     case ".ico":
       return "image/ico";
+    case ".mp4":
+      return "video/mp4";
     default:
       return "application/octet-stream";
   }
